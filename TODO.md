@@ -6,7 +6,10 @@ vibeboard で編集するタスクリスト。運用ルールは [CLAUDE.md](./C
 
 [voice-changer-types](./docs/specs/voice-changer-types.md) の Phase 2 で挙げた代表例から派生した個別調査。各タスク着手時に `docs/plans/<task-name>.md` を作り、結果は `docs/specs/<tool-name>.md` に書く。冒頭で voice-changer-types の分類のどこに該当するかを 1 行で示す。
 
-- [ ] w-okada/voice-changer の仕様調査（OSS 実行ホスト。RVC / so-vits-svc 等のモデル切替・前処理・IO 配線）
+- [ ] w-okada/voice-changer の仕様調査（OSS 実行ホスト。RVC / so-vits-svc 等のモデル切替・前処理・IO 配線） [plan](docs/plans/w-okada-voice-changer.md)
+  - [x] Phase 1: 公式リポジトリから全体アーキテクチャ・対応モデル・配布形態/ライセンスを整理
+  - [ ] Phase 2: 前処理 / 後処理 / IO 構成 / OBS 等との接続パターンを整理
+  - [ ] Phase 3: voice-changer-types §4 評価軸への暫定マッピングと後続調査タスク起票
 - [ ] RVC の仕様調査（Retrieval ベース VC、話者依存型）
 - [ ] so-vits-svc の仕様調査（コンテンツ表現 + 話者条件付け系、話者依存型）
 - [ ] Beatrice の仕様調査（OSS、配信向け軽量を謳う系統。実装系統は要裏取り）
