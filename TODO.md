@@ -2,18 +2,8 @@
 
 vibeboard で編集するタスクリスト。運用ルールは [CLAUDE.md](./CLAUDE.md) の「タスク管理ルール」「作業着手ルール」を参照。
 
-## 検証したいツール
+- [ ] ボイスチェンジャーの種類を調査 [plan](docs/plans/voice-changer-types.md)
+  - [x] Phase 1: 分類軸のドラフト作成（技術アプローチ / 提供形態 / モデル形態）
+  - [ ] Phase 2: 各分類に代表ツールを当てる（名前出しのみ）
+  - [ ] Phase 3: 後続の個別調査タスクを `TODO.md` に起票
 
-- [ ] RVC のリアルタイム実行環境を構築する
-- [ ] w-okada/voice-changer をセットアップして遅延を計測する
-- [ ] Beatrice を試す
-- [ ] OBS + 仮想オーディオデバイス (VB-CABLE / VoiceMeeter) との接続手順をまとめる
-
-## 比較・記録
-
-- [ ] 各ツールの比較表テンプレートを `docs/specs/` に用意する
-- [ ] 計測項目 (遅延, GPU 負荷, 音質の主観評価軸) を定義する
-
-## アイデア・調査
-
-- [ ] 商用サービス (Voidol, Voicemod, CoeFont 等) の比較対象を絞り込む
