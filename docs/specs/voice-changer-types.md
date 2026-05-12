@@ -122,7 +122,8 @@
 声変換そのものではないが、運用上ほぼ必ず組み合わせる層。
 
 - 仮想オーディオデバイス（変換後の音声を配信ソフトに渡すための仮想ケーブル）
-  - 代表例: VB-CABLE, VoiceMeeter Banana / Potato, BlackHole (macOS), Soundflower (旧 macOS)
+  - 代表例: VB-CABLE, VoiceMeeter Banana / Potato, BlackHole (macOS)。横断棚卸しは [virtual-audio-devices.md](./virtual-audio-devices.md)（最終確認日 2026-05-12、§4 横断棚卸し表 / §5 配信用途の典型構成 P1〜P4 を参照）
+  - Soundflower は macOS Big Sur 以前のレガシー扱いで、本ラボでの新規採用は非推奨（[virtual-audio-devices.md §3.5](./virtual-audio-devices.md#35-soundflower補足)）
 - ノイズ抑制 / ゲート（変換前の入力をクリーンにする）
   - 代表例: NVIDIA Broadcast (旧 RTX Voice), Krisp, RNNoise
 - 配信ソフト・通話ソフト（最終的な配信先）
@@ -177,11 +178,11 @@
 | 音質 | 自然さ・声の安定性・破綻のしにくさ。サンプルレートも明記 |
 | 必要 GPU 性能 | VRAM 量 / 推奨世代。GPU 無しで動くか |
 | CPU 負荷 | 配信ソフト・ゲームと併走させたときの余裕度 |
-| 入出力構成 | 想定する入力デバイス・仮想オーディオデバイス経由の取り回し |
+| 入出力構成 | 想定する入力デバイス・仮想オーディオデバイス経由の取り回し（仮想オーディオデバイスの選定軸は [virtual-audio-devices.md §4](./virtual-audio-devices.md#4-横断棚卸し表)、配信用途の典型構成は同 [§5](./virtual-audio-devices.md#5-配信用途での典型構成)） |
 | モデル形態 | §3 のどれに該当するか。新しい声を増やすコスト |
 | カスタマイズ性 | 自前モデルの学習可否・読み込み可否・ピッチや声色の調整幅 |
 | 配信での利用可否 | 商用配信での利用可否、収益化可否、クレジット要件などライセンス上の制約 |
-| エコシステム | 仮想オーディオデバイス・OBS との接続事例、コミュニティ規模、メンテ頻度 |
+| エコシステム | 仮想オーディオデバイス・OBS との接続事例、コミュニティ規模、メンテ頻度（仮想オーディオデバイス側の対応状況は [virtual-audio-devices.md §4.2 OS × ツール早見表](./virtual-audio-devices.md#42-os--ツール早見表足切り判断)） |
 | コスト | 初期費用 / サブスク / クラウド従量。GPU を持っていない場合の総額 |
 
 ## 5. このドキュメントの使い方

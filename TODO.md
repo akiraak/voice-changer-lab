@@ -26,8 +26,7 @@ vibeboard で編集するタスクリスト。運用ルールは [CLAUDE.md](./C
 
 ## 配信周辺ツール調査
 
-- [ ] 仮想オーディオデバイスまとめ（VB-CABLE / VoiceMeeter Banana・Potato / BlackHole）
-- [ ] OBS Studio との接続パターンまとめ（入出力デバイス・モニタリング・遅延ハンドリング）
+- [ ] OBS Studio との接続パターンまとめ（入出力デバイス・モニタリング・遅延ハンドリング）。前段の仮想オーディオデバイス棚卸し（[virtual-audio-devices.md](docs/specs/virtual-audio-devices.md) §4 / §5 P1〜P4）を前提に着手
 
 ## 候補プール（必要になったら個別タスクに昇格）
 
