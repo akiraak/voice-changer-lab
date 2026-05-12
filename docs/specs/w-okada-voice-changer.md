@@ -5,7 +5,7 @@
 > 本ページは [docs/plans/w-okada-voice-changer.md](../plans/w-okada-voice-changer.md) のスコープに沿って、**公式リポジトリ（[w-okada/voice-changer](https://github.com/w-okada/voice-changer)）で述べられている内容**を中心にまとめる。実測値は書かない（[CLAUDE.md](../../CLAUDE.md) 方針）。
 > 各項目について「公式に書かれている内容」「未確認」「未計測（実測タスク待ち）」を明示する。
 >
-> **進捗:** Phase 1〜2 完了（§1〜7）。§8〜9 は Phase 3 で埋める。
+> **進捗:** Phase 1〜3 完了。
 
 ## 1. 概要
 
@@ -230,16 +230,44 @@ RVC チュートリアル `tutorials/tutorial_rvc_ja_latest.md` の記述:
 
 ## 8. voice-changer-types §4 評価軸への暫定マッピング
 
-**TBD (Phase 3)**
+[voice-changer-types §4](./voice-changer-types.md#4-配信用途で見るべき主な評価軸) の評価軸に、本ホスト（VCClient）単体としての位置付けを置く。**音質**等の「ロードするモデル次第」で決まる項目はホスト単独で値を出せないため、ホストとモデルの責任分界をそのまま反映する。実測値は本ドキュメントには書かない（[CLAUDE.md](../../CLAUDE.md) 方針）。
+
+| 評価軸 | ホストとしての暫定マッピング | 出どころ / 補足 |
+| --- | --- | --- |
+| レイテンシ | 公式は **server device mode が「遅延が少ない」**、また **monitor デバイス分離で「遅延が少ないモニタリングが可能」** と明記。Tips として「Input, Monitor を WASAPI、output を任意」を低遅延運用例として推奨。**数値は公式記載なし／本ラボでも未計測** | §2.2 / §5.1 / §5.2 |
+| 音質 | ホストは変換アルゴリズムを内蔵せず、ロードする個別モデル（RVC / Beatrice / MMVC / so-vits-svc / DDSP-SVC）に依存。ホスト側で関与するのは前処理（Echo / Sup1 / Sup2 / Noise Gate / GAIN）と TUNE / CHUNK / EXTRA / F0 抽出方式の調整まで。**モデル横断の音質評価はホスト単体ではできない** | §3 / §4 |
+| 必要 GPU 性能 | 配布物に **`vcclient_win_cuda_xxx.zip`**（NVIDIA GPU 向け）エディションがあり、CUDA 前提の構成が想定されている。`std` / `mac`（Apple Silicon）/ `onnx` のエディションも存在し、GPU 必須かどうかはエディションとロードモデル依存。**必要 VRAM はモデル依存で未計測** | §2.4 |
+| CPU 負荷 | 公式に明示的な記述なし。**未計測** | — |
+| 入出力構成 | **Client device mode（ブラウザ getUserMedia 経由）**と **Server device mode（OS デバイス直接）**の 2 系統。Server device mode では **input / output / monitor の 3 デバイス分離**（v.1.5.3.7〜）と **WASAPI / ASIO への monitor 直接出力**が可能。サンプリングレートは 3 デバイス間で一致が必要 | §5.1 / §5.2 / §5.3 |
+| モデル形態 | ホストは voice-changer-types §3 のどの形態にもなり得る（ロードするモデルに依存）。v.2 系は **RVC / Beatrice v2**（共に §3.1 話者依存寄り）、v.1 系は加えて **MMVC（§3.2 多話者）/ so-vits-svc / DDSP-SVC（§3.1）** | §3.1 |
+| カスタマイズ性 | **モデルスロット UI** から複数モデルを差し替え（アップロード / ダウンロード）可能。前処理パラメータ（GAIN / TUNE / CHUNK / EXTRA / Noise Gate）と F0 抽出方式（RVC は dio / harvest / crepe 系 / rmvpe）を UI から調整可。`trainer/` / `recorder/` ディレクトリが存在し自前学習系の機能が同梱されている点までは確認済み（**学習ワークフロー詳細は未確認**） | §3.2 / §4.1 / §4.2 / §2.1 |
+| 配信での利用可否 | **コード本体は MIT**。ただしロードする個別モデル（RVC 系チェックポイント等）、同梱の DiffSinger Community Vocoders、Beatrice JVS Corpus Edition、README で言及されている音声キャラクター（つくよみちゃん / あみたろ / 琴葉茜 等）の利用条件は**それぞれ配布元規約で個別判断**が必要。**ホスト単体としては配信用途で利用可能だが、モデル毎の規約確認が前提** | §7.1 / §7.2 / §7.3 |
+| エコシステム | 公式チュートリアル `tutorial_monitor_consept_ja.md` で **Voicemeeter 等の仮想オーディオデバイス**を介した Discord / Zoom 連携が明示的に語られている。一方で **OBS Studio を名指しで説明した公式チュートリアルは Phase 1〜2 で確認した範囲では未発見**（§6.3 の一般論で代用、§9 で TODO 引き継ぎ） | §6.1 / §6.2 |
+| コスト | OSS。Hugging Face で配布されるバイナリは無償。**実質コストは GPU マシンの用意とロードするモデル配布元の有償素材有無に集約される** | §2.4 / §7 |
+
+ホスト単体で評価できるのは **レイテンシの設計上の優位（server device mode + monitor 分離）**、**IO 構成の柔軟性（3 デバイス独立）**、**カスタマイズ性（モデルスロット差し替え）**、**ホストのライセンス（MIT）** の 4 つで、残りの評価軸（音質 / 必要 GPU / 配信利用可否のうちモデル由来部分）は本ラボでロードする個別モデルの調査結果を統合して初めて値が出る、というのが本 Phase の結論。
 
 ## 9. 未確認事項 / 後続タスク
 
-**Phase 3 で正式に整理予定** — Phase 2 終了時点で残っている主な未確認は次のとおり:
+### 9.1 既存タスクに引き継ぐ未確認事項
 
-- **MMVC / so-vits-svc / DDSP-SVC を選択した場合の UI 構成**（§4.1 で確認した GAIN / TUNE / CHUNK / EXTRA / Noise Gate と、§4.2 の F0 抽出方式選択等が他モデルでも同じ顔で出るか） — 個別モデル調査タスクで扱う
-- **モデルファイルのファイルシステム上の配置規約**（モデルスロット編集 UI からのアップロード以外に、手動配置のパス規約があるか） — 個別モデル調査時に確認
-- **OBS Studio との接続パターンの公式言及**（`tutorials/` 以外のドキュメントや GitHub Discussions に拡張して再探索する余地） — `TODO.md` の「配信周辺ツール調査」と合流
-- **GUI / 通信スタックの具体**（Electron か手元 Chrome か / Socket.IO 使用有無 / フロントエンドフレームワーク） — 必要になった時点でリポジトリのコード本体を確認
-- **LICENSE / LICENSE-NOTICE の全文確認**と、README 内の音声キャラクター利用条件（つくよみちゃん / あみたろ / 琴葉茜 等）の原文引用 — モデル個別調査でキャラクター音声に触れる前に解消
-- **voice-changer-types §4 評価軸**（レイテンシ / 必要 GPU / 入出力構成 / カスタマイズ性 / 配信利用可否 / エコシステム）への暫定マッピング — Phase 3
-- **実測タスク**（レイテンシ / GPU 使用量）を起こすかどうかの判断と、起こす場合の `experiments/` 用テンプレート — Phase 3
+`TODO.md` の既存タスクで吸収できるものは、本ドキュメントで結論を出さずに引き継ぐ。
+
+- **MMVC / so-vits-svc / DDSP-SVC / RVC / Beatrice それぞれの UI 露出パラメータ**（§4.1 の GAIN / TUNE / CHUNK / EXTRA / Noise Gate、§4.2 の F0 抽出方式やモデル固有パラメータがモデル横断で同じ顔をしているか） → `TODO.md` の **RVC / so-vits-svc / Beatrice の個別調査**で確認
+- **モデルファイルのファイルシステム上の配置規約**（モデルスロット UI 経由以外の手動配置パス） → 個別モデル調査時に必要になった時点で確認
+- **OBS Studio との具体的な接続パターン**（VC Client の output → 仮想オーディオデバイス → OBS の音声入力キャプチャ） → `TODO.md` の **「OBS Studio との接続パターンまとめ」**で実機検証
+- **仮想オーディオデバイス選定の比較軸**（VB-CABLE / VoiceMeeter Banana・Potato / BlackHole） → `TODO.md` の **「仮想オーディオデバイスまとめ」**で扱う
+
+### 9.2 本タスクの follow-up として新規起票するもの
+
+本 Phase の調査範囲では結論が出ず、独立タスクとして切り出すべきもの。`TODO.md` に追加する。
+
+- **w-okada/voice-changer の LICENSE / LICENSE-NOTICE 全文確認とキャラクター音声利用条件の整理** — Phase 1 で要約レベルまで確認したが、LICENSE-NOTICE の全文と README 内の音声キャラクター（つくよみちゃん / あみたろ / 琴葉茜 等）の利用条件の原文引用は未実施。本ラボでキャラクター音声を扱うモデルに踏み込む前段として独立タスク化する。
+- **w-okada/voice-changer の実測タスク用 `experiments/` テンプレート整備** — レイテンシ / GPU 使用量の実測は個別モデルと組み合わせて初めて値が出るが、計測条件（device mode / monitor 分離有無 / サンプリングレート / CHUNK / EXTRA / F0 抽出方式 等）の記録テンプレを先に用意しておくと、後続モデルの実測タスク時に揃った形でログが残る。
+
+### 9.3 当面は深追いしない領域
+
+本ラボのスコープでは現時点で踏み込む必要がなく、必要になった時点で再開するもの。
+
+- **GUI / 通信スタックの具体実装**（Electron か手元 Chrome か / WebSocket・Socket.IO 使用有無 / フロントエンドフレームワーク） — 配信パスのトラブルシュートで通信プロトコルを見ないと進まない局面が出てきた時点で `client/` / `server/` のコードを直接読む
+- **`trainer/` / `recorder/` のワークフロー詳細** — 自前学習を検証する段になってから着手
