@@ -26,7 +26,10 @@ vibeboard で編集するタスクリスト。運用ルールは [CLAUDE.md](./C
 
 ## 配信周辺ツール調査
 
-- [ ] OBS Studio との接続パターンまとめ（入出力デバイス・モニタリング・遅延ハンドリング）。前段の仮想オーディオデバイス棚卸し（[virtual-audio-devices.md](docs/specs/virtual-audio-devices.md) §4 / §5 P1〜P4）を前提に着手
+- [ ] OBS Studio との接続パターンまとめ（入出力デバイス・モニタリング・遅延ハンドリング）。前段の仮想オーディオデバイス棚卸し（[virtual-audio-devices.md](docs/specs/virtual-audio-devices.md) §4 / §5 P1〜P4）を前提に着手 [plan](docs/plans/obs-studio-connection.md)
+  - [ ] Phase 1: 対象集合の確定 + 範囲定義の確定（対象 OBS バージョン / 派生版の線引き / 音声側に絞る境界 / 公式情報源 URL 並べ / OBS Studio バージョン明記）
+  - [ ] Phase 2: OBS 音声系機能の個別エントリ記入（音声入力キャプチャ / アプリケーション音声キャプチャ / 音声出力キャプチャ / 音声モニタリング設定 / グローバル音声サンプリングレート / オーディオ同期オフセット / 音声フィルタ）
+  - [ ] Phase 3: 横断棚卸し表 + P1〜P4 × OBS レシピ + 遅延ハンドリング + 上流反映（voice-changer-types / w-okada-voice-changer / experiments テンプレ / virtual-audio-devices）+ 後続タスク起票
 
 ## 候補プール（必要になったら個別タスクに昇格）
 
