@@ -4,6 +4,7 @@
 
 ## 2026-05
 
+- 2026-05-12: クラウド SaaS のリアルタイム入力対応棚卸し（CoeFont / Resemble AI / ElevenLabs / Voice.ai。「マイク → 別声 → 配信ソフトに流せるストリーム」の判定基準 R1 / R2 / R3 を §1 で定義し、§3 で各 SaaS の公式情報源を 1 ページずつ棚卸し、§4 横断棚卸し表で判定ラベル A〜E を確定、§5 で voice-changer-types §2.3 / §未確定事項 への反映方針を提示、§6 で配信用途の論点を整理。配信向けにそのまま乗るのは Voice.ai 1 件のみという一次判断を確定） [spec](docs/specs/cloud-saas-realtime.md) / [plan](docs/plans/archive/cloud-saas-realtime.md)
 - 2026-05-12: Beatrice の仕様調査（コンテンツ表現+内部 VQ+話者条件付け系、話者依存型。アーキ / v1・v2 差分 / 学習プロセス / 推論パラメータ / w-okada との責任分界 / ライセンス / RVC・so-vits-svc との対比 / 評価軸マッピング） [spec](docs/specs/beatrice.md) / [plan](docs/plans/archive/beatrice.md)
 - 2026-05-12: so-vits-svc の仕様調査（コンテンツ表現 + 話者条件付け系、話者依存型。アーキ / 4.0・4.1 差分 / 学習プロセス / 推論パラメータ / w-okada との責任分界 / ライセンス / RVC との対比 / 評価軸マッピング） [spec](docs/specs/so-vits-svc.md) / [plan](docs/plans/archive/so-vits-svc.md)
 - 2026-05-12: RVC の仕様調査（Retrieval ベース VC、話者依存型。アーキ / v1・v2 差分 / 学習プロセス / 推論パラメータ / w-okada との責任分界 / ライセンス / 評価軸マッピング） [spec](docs/specs/rvc.md) / [plan](docs/plans/archive/rvc.md)

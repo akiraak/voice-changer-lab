@@ -108,7 +108,14 @@
 - ローカル GPU が不要だが、ネットワーク経由のため遅延・通信品質・利用料が論点
 - 配信のリアルタイム入力に乗せられるかは SaaS ごとの提供形態次第（一般には会話/通話向け SDK の有無で判断する）
 
-**代表例:** CoeFont の声質変換系機能、Resemble AI（Live / Realtime 系プロダクト）、ElevenLabs（Voice Changer 機能）、Voice.ai のクラウド経路など。ただし「配信ソフトに流せるリアルタイム入力ストリームとして提供されているか」は各サービスで条件が異なり、TTS / 録音後変換が中心の製品も多い。リアルタイム配信用途で使えるかは個別に要検証。
+**代表例とリアルタイム配信経路の有無:** 棚卸しの一次判断は [cloud-saas-realtime.md §4.1](./cloud-saas-realtime.md#41-判定サマリ足切り判断) を参照（最終確認日 2026-05-12）。
+
+- **CoeFont** — 判定 **E（未確認）**。VC LP は "Real-time" を標榜するが、連続マイク入力 / ストリーム出力 / 仮想オーディオ経路の公式技術仕様および ToS 本文が未確認
+- **Resemble AI** — 判定 **C（部分的）**。リアルタイム TTS は WebSocket ストリーミング（200ms TTFS 公称）で揃うが、本書スコープのリアルタイム声変換（Speech-to-Speech）は同期 REST / 最大 5 分 WAV のファイル入力で連続マイク入力 / ストリーム出力非充足
+- **ElevenLabs** — 判定 **C（部分的）**。`speech-to-speech/stream` は応答 SSE のみで、入力はファイル単位（1 セグメント最大 5 分）。公式デスクトップ / OBS プラグイン / 仮想オーディオ連携の公式言及なし
+- **Voice.ai** — 判定 **A（公式リアルタイム配信経路あり）**。デスクトップアプリ "Free Real-Time AI Voice Changer for PC & Mac" が VB-Audio Virtual Cable 経由で OS に仮想入力デバイスとして露出。"Compatible with Streamlabs OBS" を公式明記。商用配信は Starter（$5/月）以上の commercial license プランが ToS 上の前提
+
+棚卸し対象外の SaaS（Respeecher / Altered AI / Supertone / Voicemod クラウド / Murf.ai / PlayHT / Speechify / Camb.ai 等）は [cloud-saas-realtime.md §7.3](./cloud-saas-realtime.md#73-棚卸し対象に追加する候補-saas本書-phase-1-ではスコープ外) に名前のみ残し、必要が出た時点で個別タスクへ昇格する。
 
 ### 補助カテゴリ: 周辺ツール
 
@@ -188,5 +195,5 @@
 
 - §1.3 の細分（コンテンツ表現系 / Retrieval 系 / Diffusion 系 / End-to-end 系）の境界が現実のツールでどこまでクリアに引けるかは個別ツール調査時に再評価する
 - Phase 2 で名前を置いた MMVC / DDSP-SVC などの分類は「一般にそう呼ばれている系統」に沿って暫定置きしているだけで、各ツールの正確な内部実装は個別ページで裏取りする（**Beatrice は [beatrice.md](./beatrice.md) §2.1 で「コンテンツ表現 + 話者条件付け系、内部 VQ あり / 外部 retrieval なし」に確定済み**）
-- §2.3 クラウド SaaS にリアルタイム入力を流し込むユースケースが現実的かは、実例が出てきた時点で再評価する
+- §2.3 クラウド SaaS にリアルタイム入力を流し込むユースケースは、[cloud-saas-realtime.md](./cloud-saas-realtime.md) で対象 4 SaaS（CoeFont / Resemble AI / ElevenLabs / Voice.ai）の公式情報源を棚卸し済み（最終確認日 2026-05-12）。**現時点で「マイク入力 → 別声 → 配信ソフトに流せるストリーム出力」を公式機能として提供していると公式情報源で裏が取れたのは Voice.ai のデスクトップアプリ経由 1 件のみ**。Resemble AI / ElevenLabs はリアルタイム TTS は揃っているがリアルタイム声変換は揃わない。CoeFont は技術仕様自体が未確認で再裏取りが必要。後続候補（Respeecher / Altered AI / Supertone / Voicemod クラウド連携 等）は [cloud-saas-realtime.md §7.3](./cloud-saas-realtime.md#73-棚卸し対象に追加する候補-saas本書-phase-1-ではスコープ外) に列挙済み
 - §3.3 Zero-shot は「配信向けに低遅延で動かせる代表例」がまだ確立していないため、後続の個別調査で更新する余地が大きい
