@@ -263,7 +263,7 @@ RVC チュートリアル `tutorials/tutorial_rvc_ja_latest.md` の記述:
 本 Phase の調査範囲では結論が出ず、独立タスクとして切り出すべきもの。`TODO.md` に追加する。
 
 - **w-okada/voice-changer の LICENSE / LICENSE-NOTICE 全文確認とキャラクター音声利用条件の整理** — Phase 1 で要約レベルまで確認したが、LICENSE-NOTICE の全文と README 内の音声キャラクター（つくよみちゃん / あみたろ / 琴葉茜 等）の利用条件の原文引用は未実施。本ラボでキャラクター音声を扱うモデルに踏み込む前段として独立タスク化する。
-- **w-okada/voice-changer の実測タスク用 `experiments/` テンプレート整備** — レイテンシ / GPU 使用量の実測は個別モデルと組み合わせて初めて値が出るが、計測条件（device mode / monitor 分離有無 / サンプリングレート / CHUNK / EXTRA / F0 抽出方式 等）の記録テンプレを先に用意しておくと、後続モデルの実測タスク時に揃った形でログが残る。
+- **w-okada/voice-changer の実測タスク用 `experiments/` テンプレート整備** — レイテンシ / GPU 使用量の実測は個別モデルと組み合わせて初めて値が出るが、計測条件（device mode / monitor 分離有無 / サンプリングレート / CHUNK / EXTRA / F0 抽出方式 等）の記録テンプレを先に用意しておくと、後続モデルの実測タスク時に揃った形でログが残る。→ [`experiments/w-okada-voice-changer/`](../../experiments/w-okada-voice-changer/README.md) に整備済み（テンプレ本体: [`_template.md`](../../experiments/w-okada-voice-changer/_template.md)）。本ドキュメント §3 / §4 / §5 / §6 / §7 と 1:1 対応する記録項目を含む（対応表は [README](../../experiments/w-okada-voice-changer/README.md#記録項目の出典) 参照）。
 
 ### 9.3 当面は深追いしない領域
 
