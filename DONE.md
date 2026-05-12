@@ -4,6 +4,7 @@
 
 ## 2026-05
 
+- 2026-05-12: RVC の仕様調査（Retrieval ベース VC、話者依存型。アーキ / v1・v2 差分 / 学習プロセス / 推論パラメータ / w-okada との責任分界 / ライセンス / 評価軸マッピング） [spec](docs/specs/rvc.md) / [plan](docs/plans/archive/rvc.md)
 - 2026-05-12: w-okada/voice-changer の仕様調査（OSS 実行ホスト。アーキ / 対応モデル / 前処理・後処理 / IO 構成 / ライセンス / 評価軸マッピング / 後続タスク起票） [spec](docs/specs/w-okada-voice-changer.md) / [plan](docs/plans/archive/w-okada-voice-changer.md)
 - 2026-05-11: ボイスチェンジャーの種類を調査（分類軸の整理 + 代表ツールの当てはめ + 後続調査タスクの起票） [spec](docs/specs/voice-changer-types.md) / [plan](docs/plans/archive/voice-changer-types.md)
 - 2026-05-11: vibeboard を vendor 取り込みして README / CLAUDE.md を整備
