@@ -8,7 +8,7 @@ vibeboard で編集するタスクリスト。運用ルールは [CLAUDE.md](./C
 
 - [ ] w-okada/voice-changer の仕様調査（OSS 実行ホスト。RVC / so-vits-svc 等のモデル切替・前処理・IO 配線） [plan](docs/plans/w-okada-voice-changer.md)
   - [x] Phase 1: 公式リポジトリから全体アーキテクチャ・対応モデル・配布形態/ライセンスを整理
-  - [ ] Phase 2: 前処理 / 後処理 / IO 構成 / OBS 等との接続パターンを整理
+  - [x] Phase 2: 前処理 / 後処理 / IO 構成 / OBS 等との接続パターンを整理
   - [ ] Phase 3: voice-changer-types §4 評価軸への暫定マッピングと後続調査タスク起票
 - [ ] RVC の仕様調査（Retrieval ベース VC、話者依存型）
 - [ ] so-vits-svc の仕様調査（コンテンツ表現 + 話者条件付け系、話者依存型）
