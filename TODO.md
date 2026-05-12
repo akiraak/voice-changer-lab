@@ -6,7 +6,6 @@ vibeboard で編集するタスクリスト。運用ルールは [CLAUDE.md](./C
 
 [voice-changer-types](./docs/specs/voice-changer-types.md) の Phase 2 で挙げた代表例から派生した個別調査。各タスク着手時に `docs/plans/<task-name>.md` を作り、結果は `docs/specs/<tool-name>.md` に書く。冒頭で voice-changer-types の分類のどこに該当するかを 1 行で示す。
 
-- [ ] Beatrice の仕様調査（OSS、配信向け軽量を謳う系統。実装系統は要裏取り）
 - [ ] クラウド SaaS のリアルタイム入力対応棚卸し（CoeFont / Resemble AI / ElevenLabs / Voice.ai 等の現状確認）
 - [ ] w-okada/voice-changer の LICENSE / LICENSE-NOTICE 全文確認とキャラクター音声利用条件（つくよみちゃん / あみたろ / 琴葉茜 等）の整理（[spec §7](docs/specs/w-okada-voice-changer.md#7-ライセンス--配布物の利用条件と本ラボで扱う際の注意点) の深堀。キャラクター音声モデルに踏み込む前段）
 - [ ] w-okada/voice-changer の実測タスク用 `experiments/` テンプレート整備（device mode / monitor 分離 / サンプリングレート / CHUNK / EXTRA / F0 抽出方式 等の計測条件記録テンプレ。後続モデル実測の足場）

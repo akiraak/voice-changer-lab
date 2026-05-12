@@ -60,7 +60,7 @@
 内部で使われるアーキテクチャや中間表現で更にサブカテゴリに分かれる。
 
 - **コンテンツ表現 + 話者条件付け系**: 入力から音韻 / コンテンツ表現を取り出し、ターゲット話者の条件を与えて合成する。VITS / so-vits-svc 系などが該当する系統
-  - 代表例: so-vits-svc, MMVC, Beatrice, FreeVC, VITS-SVC 系派生（個別ツールの内部実装は要個別確認。一般にコンテンツ抽出 + 話者埋め込み合成として語られることが多いものを置いている）
+  - 代表例: [so-vits-svc](./so-vits-svc.md)（SoftVC 系コンテンツエンコーダ + VITS デコーダ + NSF-HiFiGAN）、[Beatrice](./beatrice.md)（PhoneExtractor + PitchEstimator + WaveGenerator、内部 vector quantization を持つが外部 retrieval は持たない）、MMVC, FreeVC, VITS-SVC 系派生（MMVC / FreeVC 等の内部実装は個別確認が必要だが、so-vits-svc・Beatrice の系統と同じ「コンテンツ抽出 + 話者条件で合成」の括りでこの位置に置く）
 - **Retrieval ベース系**: 学習したターゲット話者の埋め込みを kNN 等で参照して特徴量を置換する系統
   - 代表例: RVC（Retrieval-based Voice Conversion。名称そのものがこの系統を示す）
 - **拡散モデル (Diffusion) 系**: 拡散ベースのデコーダや声質変換モデルを使う系統
@@ -187,6 +187,6 @@
 ## 未確定事項 (Phase 3 以降で再評価)
 
 - §1.3 の細分（コンテンツ表現系 / Retrieval 系 / Diffusion 系 / End-to-end 系）の境界が現実のツールでどこまでクリアに引けるかは個別ツール調査時に再評価する
-- Phase 2 で名前を置いた Beatrice / MMVC / DDSP-SVC などの分類は「一般にそう呼ばれている系統」に沿って暫定置きしているだけで、各ツールの正確な内部実装は個別ページで裏取りする
+- Phase 2 で名前を置いた MMVC / DDSP-SVC などの分類は「一般にそう呼ばれている系統」に沿って暫定置きしているだけで、各ツールの正確な内部実装は個別ページで裏取りする（**Beatrice は [beatrice.md](./beatrice.md) §2.1 で「コンテンツ表現 + 話者条件付け系、内部 VQ あり / 外部 retrieval なし」に確定済み**）
 - §2.3 クラウド SaaS にリアルタイム入力を流し込むユースケースが現実的かは、実例が出てきた時点で再評価する
 - §3.3 Zero-shot は「配信向けに低遅延で動かせる代表例」がまだ確立していないため、後続の個別調査で更新する余地が大きい

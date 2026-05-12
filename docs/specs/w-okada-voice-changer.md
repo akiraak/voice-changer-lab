@@ -80,8 +80,8 @@ README に「v.2.2.2-beta よりエディション毎のサポートモデルが
 | モデル | v.2 | v.1 (legacy) | voice-changer-types での位置 |
 | --- | --- | --- | --- |
 | RVC (v.2 / v.1) | ✅ | ✅ | §1.3 Retrieval ベース系 / §3.1 話者依存 |
-| Beatrice v2 | ✅ | — | §1.3 ニューラル変換（系統は要裏取り） |
-| Beatrice v1 | — | ✅ (Windows のみ) | 同上 |
+| Beatrice v2 | ✅ | — | §1.3 ニューラル変換（コンテンツ表現 + 話者条件付け系）/ §3.1 話者依存。[beatrice.md](./beatrice.md) で確定 |
+| Beatrice v1 | — | ✅ (Windows のみ) | 同上（v1 / v2 のモデル形式は非互換。[beatrice.md §1.4](./beatrice.md#14-beatrice-1と-beatrice-2というバージョンの呼び方) 参照） |
 | MMVC | — | ✅ | §1.3 コンテンツ表現+話者条件付け系 / §3.2 多話者 |
 | so-vits-svc | — | ✅ | §1.3 コンテンツ表現+話者条件付け系 / §3.1 話者依存 |
 | DDSP-SVC | — | ✅ | §1.4 ハイブリッド（DSP × ニューラル）/ §3.1 話者依存 |
@@ -116,7 +116,7 @@ README に「v.2.2.2-beta よりエディション毎のサポートモデルが
 
 - **F0 抽出方式（RVC）**: 「F0 Det (F0 Extractor)」で `dio / harvest / crepe / crepe full / crepe tiny / rmvpe` から選択可能（RVC チュートリアル）。
 - **INDEX（RVC のみ）**: 「元の特徴量にすべて寄せ」る比率の設定。
-- **Beatrice 系**:
+- **Beatrice 系**（モデル側の構造・パラメータは [beatrice.md](./beatrice.md) で別途整理）:
   - v.2.0.76-beta の "What's New!" に **「Beatrice: オートピッチシフト」「話者マージの実装」** との記載あり。
   - v.2.0.73-beta では「beatrice v2 の pitch, formant が反映されないバグを修正」とあり、Beatrice 系で pitch / formant が UI から操作される設計であることが読み取れる。
 
@@ -217,7 +217,7 @@ RVC チュートリアル `tutorials/tutorial_rvc_ja_latest.md` の記述:
 ### 7.2 LICENSE-NOTICE（同梱・参照される第三者素材）
 
 - **DiffSinger Community Vocoders**: Diffusion SVC / DDSP SVC で利用。利用者は元プロジェクト側のライセンス確認が必要、と案内されている。代替モデルを `pretrain\nsf_hifigan` に置く運用が可能。
-- **Beatrice JVS Corpus Edition**: 別ライセンス。voice-changer リポジトリ内の README を参照するよう案内されている。
+- **Beatrice JVS Corpus Edition**: 別ライセンス。voice-changer リポジトリ内の README（`server/voice_changer/Beatrice/README.md`、Beatrice 1 系の API 1.1.0）を参照するよう案内されている。v1 系特有の **「営利目的禁止」+ JVS Corpus 規約準拠** の整理は [beatrice.md §5.4](./beatrice.md#54-beatrice-jvs-corpus-editionv1-系w-okadavoice-changer-経由) に集約。
 - ※ LICENSE-NOTICE の本文を Phase 1 で 1 次ソース全文確認まではしていない（要約レベルで把握）。Phase 2 で全文確認して反映する。
 
 ### 7.3 本ラボで扱う際の注意点（実運用観点）
