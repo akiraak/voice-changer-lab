@@ -194,12 +194,12 @@ RVC チュートリアル `tutorials/tutorial_rvc_ja_latest.md` の記述:
 
 ### 6.3 本ラボでの一般論整理（公式言及ではない）
 
-公式言及ではないが、本ラボとして配信用途で踏むであろう構成を一般論として整理しておく（後続の OBS 接続調査タスクで上書き予定）:
+公式言及ではないが、本ラボとして配信用途で踏む構成を一般論として整理しておく:
 
-- VC Client の output を仮想オーディオデバイス（VB-CABLE / VoiceMeeter Banana・Potato / BlackHole 等）に流し、OBS の「音声入力キャプチャ」ソースでそのデバイスを拾う、というのがリアルタイム VC を OBS に流す一般的な形。**仮想オーディオデバイス側の選定軸 / OS 別の候補 / 経路パターンは [virtual-audio-devices.md](./virtual-audio-devices.md)（§4 横断棚卸し表 / §5 配信用途の典型構成 P1〜P4）に集約**しているので、ホスト側からはそこを参照する立て付け。
-- monitor は §5.2 の通り ASIO / WASAPI に直接出して配信者自身のヘッドホンで低遅延モニタする、という分担と整合する（同じ発想を経路図化したのが [virtual-audio-devices.md §5.3 P3: monitor 分離経路](./virtual-audio-devices.md#53-p3-monitor-分離経路windows低遅延モニタリング-tip)）。
+- VC Client の output を仮想オーディオデバイス（VB-CABLE / VoiceMeeter Banana・Potato / BlackHole 等）に流し、OBS の「音声入力キャプチャ」ソースでそのデバイスを拾う、というのがリアルタイム VC を OBS に流す一般的な形。**仮想オーディオデバイス側の選定軸 / OS 別の候補 / 経路パターンは [virtual-audio-devices.md](./virtual-audio-devices.md)（§4 横断棚卸し表 / §5 配信用途の典型構成 P1〜P4）に集約**しているので、ホスト側からはそこを参照する立て付け。**OBS 側の音声入力キャプチャ設定 / グローバル SR / Audio Monitoring Device / Sync Offset の取り方は [obs-studio.md §5 P1〜P4 × OBS レシピ](./obs-studio.md#5-配信用途での典型構成p1p4--obs-レシピ) として経路図 + 設定表化済み**（最終確認日 2026-05-12 / OBS Studio 32.1.2）。
+- monitor は §5.2 の通り ASIO / WASAPI に直接出して配信者自身のヘッドホンで低遅延モニタする、という分担と整合する（同じ発想を経路図化したのが [virtual-audio-devices.md §5.3 P3: monitor 分離経路](./virtual-audio-devices.md#53-p3-monitor-分離経路windows低遅延モニタリング-tip)、OBS 側のレシピは [obs-studio.md §5.3 P3 × OBS](./obs-studio.md#53-p3--obs-monitor-分離経路windows低遅延モニタリング-tip)）。
 
-→ ここの整合性確認・実機検証は、後続の **「OBS Studio との接続パターンまとめ」タスク**（`TODO.md` の「配信周辺ツール調査」セクション）と紐付ける。
+→ 整合性確認は [obs-studio.md](./obs-studio.md)（最終確認日 2026-05-12 / OBS Studio 32.1.2）で完了。実機検証は [experiments/w-okada-voice-changer/](../../experiments/w-okada-voice-changer/) 配下で個別モデルと組み合わせて取る（テンプレ §6 配信ソフト連携の経路パターン欄を本書 §5 のラベルで埋める）。
 
 ## 7. ライセンス / 配布物の利用条件と本ラボで扱う際の注意点
 
@@ -255,7 +255,7 @@ RVC チュートリアル `tutorials/tutorial_rvc_ja_latest.md` の記述:
 
 - **MMVC / so-vits-svc / DDSP-SVC / RVC / Beatrice それぞれの UI 露出パラメータ**（§4.1 の GAIN / TUNE / CHUNK / EXTRA / Noise Gate、§4.2 の F0 抽出方式やモデル固有パラメータがモデル横断で同じ顔をしているか） → `TODO.md` の **RVC / so-vits-svc / Beatrice の個別調査**で確認
 - **モデルファイルのファイルシステム上の配置規約**（モデルスロット UI 経由以外の手動配置パス） → 個別モデル調査時に必要になった時点で確認
-- **OBS Studio との具体的な接続パターン**（VC Client の output → 仮想オーディオデバイス → OBS の音声入力キャプチャ） → `TODO.md` の **「OBS Studio との接続パターンまとめ」**で実機検証
+- **OBS Studio との具体的な接続パターン**（VC Client の output → 仮想オーディオデバイス → OBS の音声入力キャプチャ） → [obs-studio.md §5 P1〜P4 × OBS レシピ](./obs-studio.md#5-配信用途での典型構成p1p4--obs-レシピ) で公式情報源ベースの整理は完了（最終確認日 2026-05-12 / OBS Studio 32.1.2）。残るのは**実機での挙動確認**で、experiments タスクとして個別に取る
 - **仮想オーディオデバイス選定の比較軸**（VB-CABLE / VoiceMeeter Banana・Potato / BlackHole） → [virtual-audio-devices.md](./virtual-audio-devices.md) で棚卸し済み（§4 横断棚卸し表 / §5 配信用途の典型構成 P1〜P4、最終確認日 2026-05-12）
 
 ### 9.2 本タスクの follow-up として新規起票するもの

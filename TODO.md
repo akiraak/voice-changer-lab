@@ -26,10 +26,9 @@ vibeboard で編集するタスクリスト。運用ルールは [CLAUDE.md](./C
 
 ## 配信周辺ツール調査
 
-- [ ] OBS Studio との接続パターンまとめ（入出力デバイス・モニタリング・遅延ハンドリング）。前段の仮想オーディオデバイス棚卸し（[virtual-audio-devices.md](docs/specs/virtual-audio-devices.md) §4 / §5 P1〜P4）を前提に着手 [plan](docs/plans/obs-studio-connection.md)
-  - [ ] Phase 1: 対象集合の確定 + 範囲定義の確定（対象 OBS バージョン / 派生版の線引き / 音声側に絞る境界 / 公式情報源 URL 並べ / OBS Studio バージョン明記）
-  - [ ] Phase 2: OBS 音声系機能の個別エントリ記入（音声入力キャプチャ / アプリケーション音声キャプチャ / 音声出力キャプチャ / 音声モニタリング設定 / グローバル音声サンプリングレート / オーディオ同期オフセット / 音声フィルタ）
-  - [ ] Phase 3: 横断棚卸し表 + P1〜P4 × OBS レシピ + 遅延ハンドリング + 上流反映（voice-changer-types / w-okada-voice-changer / experiments テンプレ / virtual-audio-devices）+ 後続タスク起票
+- [ ] **[中]** ノイズ抑制 / ゲート系の棚卸し（NVIDIA Broadcast / Krisp / RNNoise / Speex / NVIDIA Audio Effects SDK プラグイン等）。配信周辺ツール調査シリーズ第 3 弾。本書および [virtual-audio-devices.md](docs/specs/virtual-audio-devices.md) と同じ「公式情報源ベースの横断棚卸し」立て付けで書ける見込み。出発点は [obs-studio.md §3.7](docs/specs/obs-studio.md#37-音声フィルタcompressor--noise-gate--noise-suppression--vst) / [§4.1 音声フィルタ列](docs/specs/obs-studio.md#41-機能--評価項目マトリクス) / [§8.2](docs/specs/obs-studio.md#82-後続タスクtodomd-に上げるべき項目)
+- [ ] **[低]** 通話アプリ（Discord / Zoom）固有の仮想デバイス取り回し。w-okada §6.1 で公式言及がある領域。OBS Studio 単体への接続（[obs-studio.md](docs/specs/obs-studio.md)）の射程外として残した独立タスク
+- [ ] **[低]** Streamlabs Desktop / OBS.Live 等派生版の差分調査。[obs-studio.md §1.3](docs/specs/obs-studio.md#13-派生版関連プロダクトの線引き) で参考扱いとして固定済み。本家 §5 P1〜P4 レシピが派生版でそのまま当てはまるかの検証も含む
 
 ## 候補プール（必要になったら個別タスクに昇格）
 

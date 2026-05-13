@@ -401,6 +401,7 @@ VoiceMeeter は「ミキサー」と呼ばれるが、その入出力（"VoiceMe
 - **特徴**: 1 経路のみ。声変換した音を別アプリへ渡すための最小構成。
 - **前提**: 声変換ホストの **input / output / monitor 3 デバイス分離**が使えること（w-okada §5.2、v.1.5.3.7+）。VC Client のサンプリングレートを「3 デバイス間で一致」させる必要がある（同公式制約）。
 - **足切り**: ゲーム音 / BGM 等の他音源を混ぜる必要があるなら P2 へ。
+- **OBS 側の設定**: [obs-studio.md §5.1 P1 × OBS](./obs-studio.md#51-p1--obs-シングル仮想ケーブル経路windows--macos最小構成) を参照（音声入力キャプチャ ソース / Settings → Audio / Audio Monitoring Device / Sync Offset）。
 
 ### 5.2 P2: VoiceMeeter ハブ経路（Windows、複数音源を混ぜる）
 
@@ -419,6 +420,7 @@ VoiceMeeter は「ミキサー」と呼ばれるが、その入出力（"VoiceMe
 - **特徴**: VoiceMeeter のミキサーで「声変換後のマイク」と「ゲーム音 / BGM」を 1 つの仮想出力 B1 に合流させる。配信ソフト側は B1 を 1 つ拾えば良い。
 - **前提**: 内部 SR は **A1（メイン物理出力）に従属**するため、A1 のサンプリングレートを声変換ホストと揃える（[§3.2](#32-voicemeeter-banana) / [§3.3](#33-voicemeeter-potato)）。
 - **足切り**: 「**マイク経路と配信に出る音を完全に分けたい**」「**自分用モニタには素のマイクも混ぜたい**」など、3 系統以上の独立経路が必要なら P3 へ。
+- **OBS 側の設定**: [obs-studio.md §5.2 P2 × OBS](./obs-studio.md#52-p2--obs-voicemeeter-ハブ経路windows複数音源を混ぜる) を参照（B1 / B2 のソース割り / multi-track 録画 / Audio Monitoring Device は基本未設定）。
 
 ### 5.3 P3: monitor 分離経路（Windows、低遅延モニタリング Tip）
 
@@ -434,6 +436,7 @@ VoiceMeeter は「ミキサー」と呼ばれるが、その入出力（"VoiceMe
 - **特徴**: w-okada §5.2 の公式 Tip「**Input, Monitor を WASAPI デバイス、output を任意にすることで遅延をかなり少なく運用することができました**」を素直に組んだ形。配信パス（仮想ケーブル経由）と自分用モニタパス（WASAPI/ASIO 直接）を独立させ、モニタ側に仮想デバイスのオーバーヘッドが乗らないようにする。
 - **前提**: 声変換ホストの **v.1.5.3.7+** で 3 デバイス分離 UI が使えること。サンプリングレート 3 デバイス一致の制約は P1 と同じ。
 - **macOS 等価**: 同じ発想で「output→BlackHole」「monitor→Built-in Output（CoreAudio 直接）」とすれば同じ構造になる（ホスト側 UI が monitor を 3 つめのデバイスとして許容することが前提）。
+- **OBS 側の設定**: [obs-studio.md §5.3 P3 × OBS](./obs-studio.md#53-p3--obs-monitor-分離経路windows低遅延モニタリング-tip) を参照（OBS 側 Monitor は全ソース Off / Audio Monitoring Device は仮想ケーブルを絶対に選ばない / [Issue #4531](https://github.com/obsproject/obs-studio/issues/4531) のモニタ側バッファ蓄積問題からも遠ざかる設計）。
 
 ### 5.4 P4: macOS BlackHole + Multi-Output 経路（macOS、自分用モニタリング併用）
 
@@ -451,6 +454,7 @@ VoiceMeeter は「ミキサー」と呼ばれるが、その入出力（"VoiceMe
 - **特徴**: macOS の Audio MIDI Setup で **Multi-Output Device** を組み、Built-in Output（物理ヘッドホン）と BlackHole を同時に出力先にする。配信ソフトは BlackHole を音声入力キャプチャ元として拾い、配信者自身は Built-in 経由でモニタする。
 - **前提（BlackHole 公式 FAQ）**: Multi-Output Device は **Built-in Output を最上位（Top）に置き、Clock Source 以外は drift correction を有効に**する。AirPods のマイクは Aggregate の Primary に置かない（[§3.4](#34-blackhole) FAQ）。Multi-Output は macOS の制約でボリューム調整が効かない点も公式記述。
 - **足切り**: 「**配信先で受け取る音と自分のヘッドホンで聞く音を、ボリュームバランスを変えて出したい**」場合は Multi-Output だけでは制御幅が足りない。VoiceMeeter 同等の柔軟さが macOS で必要になった時点で、**Loopback (Rogue Amoeba) などの有償アプリ**を候補に挙げる（§7 スコープ外候補）。
+- **OBS 側の設定**: [obs-studio.md §5.4 P4 × OBS](./obs-studio.md#54-p4--obs-macos-blackhole--multi-output-経路macos自分用モニタリング併用) を参照（音声入力キャプチャ ソース = BlackHole 2ch / Audio Monitoring Device は Built-in Output を選び、**Multi-Output Device 自体は選ばない**）。
 
 ### 5.5 パターン選択の指針
 

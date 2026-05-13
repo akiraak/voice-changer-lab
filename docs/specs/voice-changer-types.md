@@ -128,6 +128,7 @@
   - 代表例: NVIDIA Broadcast (旧 RTX Voice), Krisp, RNNoise
 - 配信ソフト・通話ソフト（最終的な配信先）
   - 代表例: OBS Studio, Streamlabs Desktop、各種通話アプリ（Discord 等）
+  - OBS Studio（本家）の音声入力キャプチャ・モニタリング・遅延ハンドリングは [obs-studio.md](./obs-studio.md) で横断棚卸し（最終確認日 2026-05-12 / OBS Studio 32.1.2、§4 横断棚卸し表 / §5 配信用途の典型構成 P1〜P4 × OBS レシピ）。Streamlabs Desktop / OBS.Live 等の派生版は同 [§1.3](./obs-studio.md#13-派生版関連プロダクトの線引き) で参考扱い
 
 提供形態の軸ではこれらを「**周辺ツール**」として別立てし、声変換本体の比較とは混同しない。
 
@@ -178,11 +179,11 @@
 | 音質 | 自然さ・声の安定性・破綻のしにくさ。サンプルレートも明記 |
 | 必要 GPU 性能 | VRAM 量 / 推奨世代。GPU 無しで動くか |
 | CPU 負荷 | 配信ソフト・ゲームと併走させたときの余裕度 |
-| 入出力構成 | 想定する入力デバイス・仮想オーディオデバイス経由の取り回し（仮想オーディオデバイスの選定軸は [virtual-audio-devices.md §4](./virtual-audio-devices.md#4-横断棚卸し表)、配信用途の典型構成は同 [§5](./virtual-audio-devices.md#5-配信用途での典型構成)） |
+| 入出力構成 | 想定する入力デバイス・仮想オーディオデバイス経由の取り回し（仮想オーディオデバイスの選定軸は [virtual-audio-devices.md §4](./virtual-audio-devices.md#4-横断棚卸し表)、配信用途の典型構成は同 [§5](./virtual-audio-devices.md#5-配信用途での典型構成)。配信ソフト（OBS Studio）側の経路設計は [obs-studio.md §5 P1〜P4 × OBS レシピ](./obs-studio.md#5-配信用途での典型構成p1p4--obs-レシピ)） |
 | モデル形態 | §3 のどれに該当するか。新しい声を増やすコスト |
 | カスタマイズ性 | 自前モデルの学習可否・読み込み可否・ピッチや声色の調整幅 |
 | 配信での利用可否 | 商用配信での利用可否、収益化可否、クレジット要件などライセンス上の制約 |
-| エコシステム | 仮想オーディオデバイス・OBS との接続事例、コミュニティ規模、メンテ頻度（仮想オーディオデバイス側の対応状況は [virtual-audio-devices.md §4.2 OS × ツール早見表](./virtual-audio-devices.md#42-os--ツール早見表足切り判断)） |
+| エコシステム | 仮想オーディオデバイス・OBS との接続事例、コミュニティ規模、メンテ頻度（仮想オーディオデバイス側の対応状況は [virtual-audio-devices.md §4.2 OS × ツール早見表](./virtual-audio-devices.md#42-os--ツール早見表足切り判断)。OBS Studio との接続パターン（音声入力キャプチャ / モニタリング / Sync Offset）の整理は [obs-studio.md](./obs-studio.md)） |
 | コスト | 初期費用 / サブスク / クラウド従量。GPU を持っていない場合の総額 |
 
 ## 5. このドキュメントの使い方
