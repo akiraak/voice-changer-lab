@@ -7,21 +7,32 @@
 ## 1. このフォルダの位置付け
 
 - [README.md](../../README.md): プロジェクト全体の**目的・スコープ**
-- [docs/specs/voice-changer-types.md](./voice-changer-types.md): リアルタイム声変換ツールの**分類見取り図**（3 軸: 技術アプローチ / 提供形態 / モデル形態）。各分類から個別 spec へ降りる**ハブ**として機能する
+- [docs/specs/overview.md](./overview.md): **A4 一枚で読み切れる入門ページ**。提供形態（ローカル OSS / 商用デスクトップ / クラウド SaaS）を主軸に、種類・特徴・代表ツールをまとめる。**初見はここから読む**
+- [docs/specs/voice-changer-types.md](./voice-changer-types.md): リアルタイム声変換ツールの**分類見取り図**（3 軸: 技術アプローチ / 提供形態 / モデル形態）。各分類から個別 spec へ降りる**ハブ**として機能する。overview.md より詳しく分類軸を見たいときに参照
 - 本ファイル: `docs/specs/` フォルダの**目次**。各 spec を 2〜3 行で紹介し、読む順番を示す
 - 各 spec ファイル: 個別ツールの詳細 / 横断棚卸し
 
-`README → voice-changer-types → 個別 spec` の流れと、`README → 本ファイル → 個別 spec` の流れの両方が成立するよう、本ファイルでは voice-changer-types での位置付けタグを各エントリに付記する。
+`README → overview → 個別 spec` を入門ルート、`README → voice-changer-types → 個別 spec` を分類軸ルート、`README → 本ファイル → 個別 spec` を目次ルートとして、3 つの導線が成立するよう構成している。本ファイルでは voice-changer-types での位置付けタグを各エントリに付記する。
 
 ## 2. 一覧
 
 ### 2.1 全体の見取り図
 
+- **[overview.md](./overview.md)** — リアルタイムボイスチェンジャー入門（A4 一枚）
+  - **提供形態主軸**（ローカル OSS / ローカル商用 / クラウド SaaS）で 3 タイプに分け、それぞれの**特徴**と**有名/人気の代表ツール**を 1 セットで提示。
+  - §2 ざっくり比較表（GPU 要否 / 料金 / 自前モデル / 配信ソフト連携 / 代表ツール）、§3 で技術アプローチとモデル形態の違いを軽く補足。
+  - **初見の入口**: voice-changer-types.md の 3 軸クロスマトリクスは情報量が多いため、まずここを読んでから興味の枝へ降りる導線。
+
 - **[voice-changer-types.md](./voice-changer-types.md)** — ボイスチェンジャーの分類見取り図
   - 3 軸（**技術アプローチ** / **提供形態** / **モデル形態**）で分類軸を提示し、各カテゴリに代表ツールを当てはめている（名前出しのみ）。
   - §4 では配信用途で見るべき主な評価軸（遅延 / 音質 / GPU 要件 / 入出力構成 / エコシステム / ライセンス）を整理。
-  - **このフォルダのハブ**: 個別 spec はここで定義した分類軸への位置付けを冒頭に書く形で揃えてある。
+  - **個別 spec のハブ**: 各 spec の冒頭ではここで定義した分類軸への位置付けタグを書く形で揃えてある。overview.md より細かい分類軸を見たいときに参照。
   - 進捗: Phase 1〜2 完了。
+
+- **[vcclient-vs-beatrice.md](./vcclient-vs-beatrice.md)** — VCClient と Beatrice の違い（特定の混同を解きほぐすトピック）
+  - **「VCClient = 実行ホスト」と「Beatrice = 声変換アルゴリズム / モデル」で階層が違う**ことを中心に据えた解説ページ。同じ Beatrice を使っても「公式 VST 単体 / VCClient + Beatrice ロード / 派生クライアント」の 3 経路で**ホストの責任分界**が変わる点を 1 表で整理。
+  - §5 用語整理（VCClient / VC Client / w-okada/voice-changer の同一性、Beatrice v1 / v2 / JVS Corpus Edition / キャラクターエディションの指す範囲）、§6 で「Beatrice **だけ** 使うなら公式 VST、他モデルと切り替えるなら VCClient」という選び方ガイドと**経路ごとに読むべきライセンスが変わる**点の整理。
+  - **§3 読む順番には組み込まない**（必要な人だけ読むトピック扱い）。w-okada-voice-changer.md / beatrice.md の補助として参照する。
 
 ### 2.2 OSS 実行ホスト
 
@@ -77,8 +88,9 @@
 新規にこのフォルダを開いたときの推奨ルート。
 
 1. **[README.md](../../README.md)** — プロジェクトの目的・スコープを把握
-2. **[voice-changer-types.md](./voice-changer-types.md)** — 分類見取り図で全体観をつかむ
+2. **[overview.md](./overview.md)** — A4 一枚の入門ページで「種類 × 特徴 × 代表ツール」をつかむ
 3. **興味の枝へ降りる**
+   - 「もっと細かい分類軸を見たい」 → [voice-changer-types.md](./voice-changer-types.md)（3 軸クロスマトリクス）
    - 「ローカル OSS でリアルタイム声変換を試したい」 → [w-okada-voice-changer.md](./w-okada-voice-changer.md) → 載せるモデルとして [rvc.md](./rvc.md) / [so-vits-svc.md](./so-vits-svc.md) / [beatrice.md](./beatrice.md)
    - 「クラウド SaaS でいけるか知りたい」 → [cloud-saas-realtime.md](./cloud-saas-realtime.md)
    - 「配信ソフトに繋ぐ経路を組みたい」 → [virtual-audio-devices.md](./virtual-audio-devices.md) → [obs-studio.md](./obs-studio.md)
