@@ -16,20 +16,48 @@
 
 実際のツールはこの 3 軸の組合せで表現できる（例: 「ニューラル変換 × ローカル OSS × 話者依存」）。
 
-```
-                   ┌─ 技術アプローチ ─┐
-                   │  - 信号処理       │
-                   │  - ボコーダ系     │
-                   │  - ニューラル変換 │
-                   │  - ハイブリッド   │
-                   └───────────────────┘
-                            │
-   ┌─ 提供形態 ─┐           │           ┌─ モデル形態 ──────────┐
-   │ - OSS      │ ────────  ◇  ──────── │ - 話者依存            │
-   │ - 商用     │                        │ - 多話者 / 非依存     │
-   │ - SaaS     │                        │ - Zero-shot           │
-   └────────────┘                        │ - プリセット固定      │
-                                         └───────────────────────┘
+```mermaid
+flowchart LR
+    subgraph TECH["技術アプローチ"]
+        direction TB
+        T1[信号処理]
+        T2[ボコーダ系]
+        T3[ニューラル変換]
+        T4[ハイブリッド]
+    end
+    subgraph FORM["提供形態"]
+        direction TB
+        F1[ローカル OSS]
+        F2[ローカル商用]
+        F3[クラウド SaaS]
+    end
+    subgraph MODEL["モデル形態"]
+        direction TB
+        M1[話者依存]
+        M2[多話者 / 非依存]
+        M3[Zero-shot]
+        M4[プリセット固定]
+    end
+
+    COMBO(("ツール 1 個<br/>= 3 軸の組合せ"))
+
+    TECH ==> COMBO
+    FORM ==> COMBO
+    MODEL ==> COMBO
+
+    COMBO -. 例 .-> EX["ニューラル変換 × ローカル OSS × 話者依存"]
+
+    classDef techNode fill:#e3f2fd,stroke:#1976d2,color:#0d47a1
+    classDef formNode fill:#f3e5f5,stroke:#7b1fa2,color:#4a148c
+    classDef modelNode fill:#e8f5e9,stroke:#388e3c,color:#1b5e20
+    classDef comboNode fill:#fff8e1,stroke:#f57f17,color:#e65100
+    classDef exNode fill:#fafafa,stroke:#616161,color:#212121
+
+    class T1,T2,T3,T4 techNode
+    class F1,F2,F3 formNode
+    class M1,M2,M3,M4 modelNode
+    class COMBO comboNode
+    class EX exNode
 ```
 
 ## 1. 技術アプローチによる分類
