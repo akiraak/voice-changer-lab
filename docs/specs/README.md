@@ -83,6 +83,16 @@
 
 - **第 3 弾（未着手）**: ノイズ抑制 / ゲート系の棚卸し（NVIDIA Broadcast / Krisp / RNNoise / Speex / NVIDIA Audio Effects SDK）。[TODO.md](../../TODO.md) に起票済み。
 
+### 2.6 セットアップ手順書（チュートリアル型）
+
+「個別 spec の棚卸し結果を、実際に手を動かして組み立てる人向けに 1 本のチュートリアルにまとめ直す」立て付け。spec ではなく**操作手順ベース**。
+
+- **[install-vcclient-beatrice-windows.md](./install-vcclient-beatrice-windows.md)** — VCClient + Beatrice + α インストールマニュアル（Windows 10/11）
+  - [vcclient-vs-beatrice.md §4 経路 B](./vcclient-vs-beatrice.md#4-3-つの使い方パターン同じ-beatrice-を使っても起動経路が違う)（VCClient + Beatrice）を **Windows 10/11 で配信用途に組む**ためのチュートリアル。
+  - VCClient（CUDA エディション主動線）/ Beatrice 2（主動線）+ Beatrice 1（営利目的禁止条項のみ言及）/ VB-CABLE / VoiceMeeter Banana / OBS Studio 32.1.x / ノイズ抑制（選択肢提示のみ）/ Discord・Zoom（汎用チェックリスト）までを 1 本でカバー。
+  - §10 で P1〜P4 × OBS のレシピ表（Windows 配信用途は P2 / P3 中心）、§11 動作確認手順、§12 ハマりどころ早見表、§13 ライセンス・規約チェックリストを提示。
+  - 進捗: Phase 1〜3 完了（最終確認日 2026-05-14）。
+
 ## 3. 読む順番（推奨）
 
 新規にこのフォルダを開いたときの推奨ルート。

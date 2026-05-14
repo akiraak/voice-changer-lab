@@ -1,6 +1,8 @@
 # VCClient 実測ログ — `<タイトル: 1 行で何を測ったか>`
 
 > **テンプレ運用メモ**: このファイルは値を一切含まない骨格です。コピーして `YYYY-MM-DD_<model>_<env>.md` にリネームして使ってください。記入ルールは [README.md](./README.md) / [../README.md](../README.md#共通の記入ルール) を参照。値が無い欄は空欄にせず `未計測` または `n/a` と明示し、計測値には必ず計測方法と計測時の負荷状況を併記してください。記入が終わったら、このテンプレ運用メモの引用ブロックは削除して構いません。
+>
+> **Windows でのセットアップ前提**: 本テンプレで計測する環境構築の手順は [install-vcclient-beatrice-windows.md](../../docs/specs/install-vcclient-beatrice-windows.md)（VCClient + Beatrice + VB-CABLE + VoiceMeeter Banana + OBS Studio + Discord・Zoom の Windows 向けインストールマニュアル）にまとめてある。§2「環境」/ §3「VCClient 設定」/ §6「配信ソフト連携の経路パターン」を記入する際の前提として参照する。
 
 ## 1. 計測概要
 

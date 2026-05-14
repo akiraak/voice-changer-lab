@@ -201,6 +201,8 @@ RVC チュートリアル `tutorials/tutorial_rvc_ja_latest.md` の記述:
 
 → 整合性確認は [obs-studio.md](./obs-studio.md)（最終確認日 2026-05-12 / OBS Studio 32.1.2）で完了。実機検証は [experiments/w-okada-voice-changer/](../../experiments/w-okada-voice-changer/) 配下で個別モデルと組み合わせて取る（テンプレ §6 配信ソフト連携の経路パターン欄を本書 §5 のラベルで埋める）。
 
+**Windows 10/11 で VCClient + Beatrice + 仮想オーディオデバイス + OBS Studio を実機セットアップする手順** → [install-vcclient-beatrice-windows.md](./install-vcclient-beatrice-windows.md)（[§5.2 の 3 デバイス構成](#52-input--output--monitor-の-3-デバイス構成server-device-modev1537) と [§5.4 サンプリングレート設定](#54-vc-client-サンプリングレート設定serverdeviceサンプリングレート) を踏まえた P1〜P3 のレシピ + 動作確認 + ハマりどころ早見表まで）。
+
 ## 7. ライセンス / 配布物の利用条件と本ラボで扱う際の注意点
 
 ### 7.1 リポジトリ本体

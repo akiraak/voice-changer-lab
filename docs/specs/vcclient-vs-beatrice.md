@@ -144,6 +144,8 @@
 - ノイズゲート / GAIN / CHUNK / EXTRA など**ホスト共通 UI** から触れる前処理を活用したい
 - 仮想オーディオデバイス経由で OBS / Discord / Zoom に流す経路を本ラボの典型構成（[virtual-audio-devices.md §5](./virtual-audio-devices.md#5-配信用途での典型構成) / [obs-studio.md §5](./obs-studio.md#5-配信用途での典型構成p1p4--obs-レシピ)）に乗せたい
 
+**Windows 10/11 で経路 B を実際に組むときの手順書** → [install-vcclient-beatrice-windows.md](./install-vcclient-beatrice-windows.md)（VCClient + Beatrice 2 + VB-CABLE + VoiceMeeter Banana + OBS Studio + ノイズ抑制（選択肢提示）+ Discord・Zoom（汎用チェックリスト）を 1 本のチュートリアルにまとめたもの）。
+
 ### 6.3 ライセンスの所在に注意
 
 **経路によって読むべき規約が変わる**（[beatrice.md §5](./beatrice.md#5-配布形態とライセンス) / [w-okada-voice-changer.md §7](./w-okada-voice-changer.md#7-ライセンス--配布物の利用条件と本ラボで扱う際の注意点)）。
@@ -166,4 +168,5 @@
 - **入門ページ（提供形態主軸 3 タイプ）** → [overview.md](./overview.md)
 - **分類軸の見取り図（3 軸クロスマトリクス）** → [voice-changer-types.md](./voice-changer-types.md)
 - **配信ソフトへの繋ぎ方** → [virtual-audio-devices.md](./virtual-audio-devices.md) → [obs-studio.md](./obs-studio.md)
+- **Windows で経路 B を実機セットアップする手順** → [install-vcclient-beatrice-windows.md](./install-vcclient-beatrice-windows.md)
 - **フォルダ全体の目次** → [README.md](./README.md)

@@ -458,6 +458,8 @@ VoiceMeeter は「ミキサー」と呼ばれるが、その入出力（"VoiceMe
 
 ### 5.5 パターン選択の指針
 
+**Windows で P1〜P3 を実機に組む手順** → [install-vcclient-beatrice-windows.md §10](./install-vcclient-beatrice-windows.md#10-典型構成のセットアップレシピp1p4--obs)（VCClient + Beatrice + VB-CABLE + VoiceMeeter Banana + OBS Studio + Discord・Zoom を 1 本のチュートリアルにまとめたもの）。
+
 | 必要要件 | 選ぶパターン |
 | --- | --- |
 | 1 経路で配信ソフトに渡せれば十分（最小構成） | P1（VB-CABLE / BlackHole 2ch） |
