@@ -30,6 +30,9 @@ venv/
 *.tmp
 .tmp/
 
+# デバッグ用スクリーンショット置き場 (ローカルのみ)
+debug-ss/
+
 # OS
 .DS_Store
 Thumbs.db
